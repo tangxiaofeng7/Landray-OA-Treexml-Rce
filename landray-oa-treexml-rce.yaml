@@ -2,7 +2,7 @@ id: landray-oa-treexml-rce
 
 info:
   name: Landray OA treexml.tmpl Script RCE
-  author: ritikchaddha
+  author: tangxiaofeng7
   severity: high
   reference:
     - https://github.com/tangxiaofeng7
